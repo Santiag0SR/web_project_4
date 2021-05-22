@@ -88,8 +88,7 @@
 }
 
 .profile__text {
-  color: white;
-  padding-left: 30px;
+    padding-left: 30px;
 }
 
 @media screen and (max-width: 950px) {
@@ -101,15 +100,18 @@
 .profile__name {
   margin: 0;
   padding: 0;
+  color: white;
+  display: inline;
 }
 
-.profile__type {
+.profile__about {
   margin: 0;
   padding: 0;
+  max-width:247px;
+  color: white;
 }
 
 .profile__edit-button {
-  padding: 7px 7px;
   width: 24px;
   height: 24px;
   box-sizing: border-box;
@@ -127,6 +129,13 @@
 
 .profile__edit-button:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 950px) {
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .profile__add-button {
@@ -258,7 +267,7 @@
   display: none;
 }
 
-.modal_opened{
+.modal_open{
   display: flex;
 }
 
@@ -324,9 +333,9 @@
   margin-bottom: 48px;
 }
 
-.modal__form-item::placeholder {
+/*.modal__form-item::placeholder {
   color: black;
-}
+}*/
 
 .modal__form-item:focus {
   outline: none;
