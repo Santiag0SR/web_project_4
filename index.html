@@ -8,6 +8,17 @@
     <title>AroundTheUS</title>
   </head>
   <body class="page">
+    <div class="modal modal_opened">
+      <div class="modal__box">
+        <h2 class="modal__text">Edit Profile</h2>
+        <button class="modal__close-button button"></button>
+        <form class="modal__form">
+          <input class="modal__form-item" type="text" name="profile-name" placeholder="Jacques Cousteau"/>
+          <input class="modal__form-item" type="text" name="profile-title" placeholder="Explorer" />
+          <button class="modal__save-button">Save</button>
+        </form>
+      </div>
+    </div>
     <header class="header">
       <h1 class="header__title">Around<sup class="header__sup">the us</sup></h1>
     </header>
@@ -22,11 +33,8 @@
           <div class="profile__text">
             <h2 class="profile__name">
               Jaques Cousteau
-              <input
+              <button
                 class="profile__edit-button"
-                type="image"
-                alt="edit_profile"
-                src="./Images/edit_profile_button.svg"
               />
             </h2>
             <p class="profile__type">Explorer</p>
@@ -34,9 +42,6 @@
         </div>
         <input
           class="profile__add-button"
-          type="image"
-          alt="edit_profile"
-          src="./Images/Add_button.svg"
         />
       </section>
       <section class="cards">
@@ -44,72 +49,54 @@
           <img class="card__img" src="Images/Yosemite.jpeg" alt="Yosemite" />
           <div class="card__text-container">
             <p class="card__text">Yosemite Valley</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
         <div class="card">
           <img class="card__img" src="Images/Lake_Louise.jpeg" alt="Lake_Louise" />
           <div class="card__text-container">
             <p class="card__text">Lake Louise</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
         <div class="card">
           <img class="card__img" src="Images/Bald_Mountains.jpeg" alt="Bald_Mountains" />
           <div class="card__text-container">
             <p class="card__text">Bald Mountains</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
         <div class="card">
           <img class="card__img" src="Images/Latemar.jpeg" alt="Latemar" />
           <div class="card__text-container">
             <p class="card__text">Latemar</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
         <div class="card">
           <img class="card__img" src="Images/Vanoise_National_Park.jpeg" alt="Vanoise_National_Park" />
           <div class="card__text-container">
             <p class="card__text">Vanoise National Park</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
         <div class="card">
           <img class="card__img" src="Images/Lago_di_Braies.jpeg" alt="Lago_di_Braies" />
           <div class="card__text-container">
             <p class="card__text">Lago di Braies</p>
-            <input
-              class="card__like-button"
-              type="image"
-              alt="like_button"
-              src="./Images/like_button.svg"
-            />
+            <button
+              class="button card__like-button"
+            >
           </div>
         </div>
       </section>
