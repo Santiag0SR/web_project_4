@@ -93,6 +93,7 @@
 
 @media screen and (max-width: 950px) {
   .profile__text {
+    padding-left: 0;
     text-align: center;
   }
 }

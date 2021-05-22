@@ -28,14 +28,15 @@ const editProfileAboutInput = document.querySelector(".modal__form-item_type_abo
 const profileAboutEl = document.querySelector(".profile__about");
 
 
-
 editProfileNameInput.value = profileNameEl.textContent;
 editProfileAboutInput.value = profileAboutEl.textContent;
 
 
-editProfileEl.addEventListener("submit", function(event){
+function submitForm (event){
     event.preventDefault();
     profileNameEl.textContent = editProfileNameInput.value;
     profileAboutEl.textContent = editProfileAboutInput.value;
     closeModal();
-})
+}
+
+editProfileEl.addEventListener("submit", submitForm);
