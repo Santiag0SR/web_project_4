@@ -1,0 +1,22 @@
+.content {
+    margin: 45px 200px 36px 200px;
+    max-width: 880px;
+  }
+  
+  @media screen and (max-width: 950px) {
+    .content {
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .content {
+      margin: 35px 100px 30px 100px;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .content {
+      margin: 28px 0 38px 0;
+    }
+  }

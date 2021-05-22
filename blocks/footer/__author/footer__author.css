@@ -1,0 +1,16 @@
+.footer__author{
+    color: #545454;
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 950px) {
+    .footer__author {
+        font-size: 14px;
+    }
+  }

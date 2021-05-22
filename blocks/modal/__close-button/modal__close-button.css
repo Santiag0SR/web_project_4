@@ -1,0 +1,20 @@
+.modal__close-button {
+  position: absolute;
+  top: -40.7px;
+  right: -40.7px;
+  width: 40.7px;
+  height: 40.7px;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("./Images/Close_button.svg");
+}
+
+@media screen and (max-width: 600px) {
+  .modal__close-button {
+    top: -54px;
+    right: 0;
+    width: 26px;
+    height: 26px;
+  }
+}

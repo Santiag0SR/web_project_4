@@ -1,16 +1,19 @@
 # Project 4: Around The U.S.
 
-### Overview
+## Intro
 
-* Figma
-* Images
+"Web Project" 3 is a project of the course with Practicum by Yandex (https://practicum.yandex.com/) to be a Web Developer.
 
-**Figma**
+## Description
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+The purpose of this project is to create a website fully responsive in all device sizes and to add some functionality, like adding a modal and being able to change the profile. 
 
-**Images**
+Check out my work: 
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+The project has been reviewed by :)
 
-Have fun with JavaScript!
+## Technologies and Techniques
+
+We were introduce to JavasScript and also used CSS and HTML language to create the webpage.
+
+We also organize the code so it is BEM compliant.

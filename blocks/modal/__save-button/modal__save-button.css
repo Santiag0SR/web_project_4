@@ -1,0 +1,31 @@
+.modal__save-button {
+  background-color: black;
+  text-align: center;
+  color: #fff;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 50px;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.modal__save-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .modal__save-button {
+      font-size: 14px;
+  }
+}
