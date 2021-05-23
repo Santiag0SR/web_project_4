@@ -6,7 +6,7 @@
 
 ## Description
 
-The purpose of this project is to create a website fully responsive in all device sizes and to add some functionality, like adding a modal and being able to change the profile. 
+The purpose of this project is to create a website fully responsive in all device sizes and to add some functionality, like adding a modal and being able to change the profile.
 
 Check out my work: https://santiag0sr.github.io/web_project_4/
 

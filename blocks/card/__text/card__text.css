@@ -1,7 +1,7 @@
 .card__text {
   margin: 0;
   padding: 0;
-  max-width: 225px; 
+  max-width: 225px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

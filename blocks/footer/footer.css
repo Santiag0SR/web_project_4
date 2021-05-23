@@ -1,18 +1,18 @@
 .footer {
-    color: white;
-    max-width: 880px;
-    margin: 68px 200px 60px 200px;
-    padding: 0;
+  color: white;
+  max-width: 880px;
+  margin: 68px 200px 60px 200px;
+  padding: 0;
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    margin: 35px 100px 30px 100px;
   }
-  
-  @media screen and (max-width: 700px) {
-    .footer {
-      margin: 35px 100px 30px 100px;
-    }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    margin: 28px 19px 38px 19px;
   }
-  
-  @media screen and (max-width: 500px) {
-    .footer {
-      margin: 28px 19px 38px 19px;
-    }
-  }
+}

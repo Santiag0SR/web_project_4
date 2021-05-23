@@ -1,19 +1,19 @@
 .profile__name {
-    margin: 0;
-    padding: 0;
-    color: #FFFFFF;
-    display: inline;
-    font-family: "Inter", Arial, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 42px;
-    line-height: 1.2;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  display: inline;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  @media screen and (max-width: 950px) {
-    .profile__name {
-        font-size: 22px;
-    }
+@media screen and (max-width: 950px) {
+  .profile__name {
+    font-size: 22px;
   }
+}

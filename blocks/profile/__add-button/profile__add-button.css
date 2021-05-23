@@ -4,6 +4,7 @@
   border: 1px solid #fff;
   background-color: transparent;
   background-image: url(../../../Images/Add_button.svg);
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {

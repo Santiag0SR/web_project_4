@@ -10,7 +10,7 @@
   background-image: url("../../../Images/Close_button.svg");
 }
 
-.modal__close-button:hover{
+.modal__close-button:hover {
   opacity: 0.6;
 }
 
