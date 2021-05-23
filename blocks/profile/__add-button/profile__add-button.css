@@ -6,7 +6,6 @@
     background-image: url(../../../Images/Add_button.svg);
     background-position: center;
     background-repeat: no-repeat;
-    box-sizing: border-box;
     transition-property: opacity;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;

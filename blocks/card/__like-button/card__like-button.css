@@ -8,7 +8,7 @@
   background-image: url(../../../Images/like_button.svg);
   background-position: center;
   background-repeat: no-repeat;
-  box-sizing: border-box;
+  background-size: contain;
   transition-property: opacity;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;

@@ -1,6 +1,7 @@
 .card__text {
   margin: 0;
   padding: 0;
+  max-width: 225px; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -11,5 +12,4 @@
   line-height: 1.2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
