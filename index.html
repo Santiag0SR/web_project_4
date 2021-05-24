@@ -11,86 +11,90 @@
     <div class="modal">
       <div class="modal__box">
         <h2 class="modal__text">Edit Profile</h2>
-        <button class="modal__close-button button"></button>
-        <form class="modal__form">
+        <button class="modal__close-button button" type="button"></button>
+        <form class="modal__form" name="profile-form">
           <input class="modal__form-item modal__form-item_type_name" type="text" name="profile-name" placeholder="Name"/>
           <input class="modal__form-item modal__form-item_type_about" type="text" name="profile-about" placeholder="About Me" />
-          <button class="modal__save-button button">Save</button>
+          <button class="modal__save-button button" type="submit">Save</button>
         </form>
       </div>
     </div>
     <header class="header">
-      <img class= "header__logo" src="Images/Vector.svg" alt="AroundTheUS">
+      <img class= "header__logo" src="Images/Vector.svg" alt="Around the US">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__info">
           <img
-            src="Images/Jacques_Cousteau (1).png"
+            src="Images/Jacques_Cousteau.png"
             class="profile__avatar"
-            alt="Jacques_Cousteau"
+            alt="Jacques Cousteau"
           />
           <div class="profile__text-container">
-            <h2 class="profile__name">Jaques Cousteau</h2> <button class="button profile__edit-button"></button>
+            <h1 class="profile__name">Jaques Cousteau</h1> <button class="button profile__edit-button"></button>
             <p class="profile__about">Explorer</p>
           </div>
           
         </div>
-        <button class="button profile__add-button"></button>
+        <button 
+        class="button profile__add-button" type="button">
+        </button>
       </section>
       <section class="elements">
-        <div class="card">
+        <article class="card">
           <img class="card__img" src="Images/Yosemite.jpeg" alt="Yosemite" />
           <div class="card__text-container">
-            <p class="card__text">Yosemite Valle</p>
-            <button class="button card__like-button"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="Images/Lake_Louise.jpeg" alt="Lake_Louise" />
-          <div class="card__text-container">
-            <p class="card__text">Lake Louise</p>
-            <button
-              class="button card__like-button"
+            <h3 class="card__text">Yosemite Valle</h3>
+            <button 
+            class="button card__like-button" type="button"
             ></button>
           </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="Images/Bald_Mountains.jpeg" alt="Bald_Mountains" />
+        </article>
+        <article class="card">
+          <img class="card__img" src="Images/Lake_Louise.jpeg" alt="Lake Louise" />
           <div class="card__text-container">
-            <p class="card__text">Bald Mountains</p>
+            <h3 class="card__text">Lake Louise</h3>
             <button
-              class="button card__like-button"
+              class="button card__like-button" type="button"
             ></button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
+          <img class="card__img" src="Images/Bald_Mountains.jpeg" alt="Bald Mountains" />
+          <div class="card__text-container">
+            <h3 class="card__text">Bald Mountains</h3>
+            <button
+              class="button card__like-button" type="button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
           <img class="card__img" src="Images/Latemar.jpeg" alt="Latemar" />
           <div class="card__text-container">
-            <p class="card__text">Latemar</p>
+            <h3 class="card__text">Latemar</h3>
             <button
-              class="button card__like-button"
+              class="button card__like-button" type="button"
             ></button>
           </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="Images/Vanoise_National_Park.jpeg" alt="Vanoise_National_Park" />
+        </article>
+        <article class="card">
+          <img class="card__img" src="Images/Vanoise_National_Park.jpeg" alt="Vanoise National Park" />
           <div class="card__text-container">
-            <p class="card__text">Vanoise National Park</p>
+            <h3 class="card__text">Vanoise National Park</h3>
             <button
-              class="button card__like-button"
+              class="button card__like-button" type="button"
             ></button>
           </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="Images/Lago_di_Braies.jpeg" alt="Lago_di_Braies" />
+        </article>
+        <article class="card">
+          <img class="card__img" src="Images/Lago_di_Braies.jpeg" alt="Lago di Braies" />
           <div class="card__text-container">
-            <p class="card__text">Lago di Braies</p>
+            <h3 class="card__text">Lago di Braies</h3>
             <button
-              class="button card__like-button"
+              class="button card__like-button" type="button"
             ></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">

@@ -1,6 +1,6 @@
 .modal__form-item {
   margin-bottom: 30px;
-  padding-bottom: 9px;
+  padding:0 0 9px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   color: #000000;
