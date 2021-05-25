@@ -14,6 +14,7 @@ const profileAboutEl = document.querySelector(".profile__about");
 function openForm() {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileAboutInput.value = profileAboutEl.textContent;
+  modalEl.classList.add("modal_open");
 }
 
 function closeModal() {
@@ -28,7 +29,6 @@ function submitForm(event) {
 }
 
 profileEditButtonEl.addEventListener("click", function () {
-  modalEl.classList.add("modal_open");
   openForm();
 });
 
