@@ -8,10 +8,10 @@
 
 The purpose of this project is to create a website fully responsive in all device sizes and to add some functionality using JavaScript.
 
-    * Being able to change the profile.
-    * Add new cards
-    * Delete cards
-    * Like button
+- Being able to change the profile.
+- Add new cards
+- Delete cards
+- Like button
 
 Check out my work: https://santiag0sr.github.io/web_project_4/
 
