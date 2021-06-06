@@ -1,5 +1,5 @@
 .modal__preview-image {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
   object-fit: cover;
 }

@@ -57,8 +57,6 @@ const previewCloseButtonEl = document.querySelector(
   ".modal__close-button_type_preview"
 );
 
-const deleteButtonEl = document.querySelector(".card__delete-button");
-console.log(deleteButtonEl);
 //======
 //Form elemnts
 //======
@@ -112,6 +110,18 @@ function generateCard(card) {
     previewImageEl.alt = card.name;
     previewCaptionEl.textContent = card.name;
   });
+  cardElement
+    .querySelector(".card__delete-button")
+    .addEventListener("click", (event) => {
+      const target = event.target;
+      const removeCard = target.parentElement;
+      removeCard.remove();
+    });
+  cardElement
+    .querySelector(".card__like-button")
+    .addEventListener("click", (evt) => {
+      evt.target.classList.toggle("card__like-button_active");
+    });
   return cardElement;
 }
 
@@ -142,8 +152,8 @@ function submitAddForm(event) {
   };
   const cardElement = generateCard(newCard);
   placesElements.prepend(cardElement);
-  //renderCard(generateCard(newCard), placesElements);
   closeModal(addModalEl);
+  addCardsEl.reset();
 }
 
 //======
@@ -182,5 +192,3 @@ addCardsEl.addEventListener("submit", submitAddForm);
 previewCloseButtonEl.addEventListener("click", () => {
   closeModal(previewModalEl);
 });
-
-//Card delete
