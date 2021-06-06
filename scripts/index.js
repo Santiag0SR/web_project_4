@@ -30,10 +30,15 @@ const initialCards = [
 //======
 const editModalEl = document.querySelector(".modal_type_edit");
 const addModalEl = document.querySelector(".modal_type_add");
+const previewModalEl = document.querySelector(".modal_type_preview");
+
 const editProfileEl = document.querySelector(".modal__form_type_edit");
 const addCardsEl = document.querySelector(".modal__form_type_add");
-
 const placesElements = document.querySelector(".elements");
+const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
+const previewCaptionEl = previewModalEl.querySelector(
+  ".modal__preview-caption"
+);
 
 //======
 //Buttons and other DOM elements
@@ -48,7 +53,12 @@ const addCardButtonEl = document.querySelector(".profile__add-button");
 const addCloseButtonEl = document.querySelector(
   ".modal__close-button_type_add"
 );
+const previewCloseButtonEl = document.querySelector(
+  ".modal__close-button_type_preview"
+);
 
+const deleteButtonEl = document.querySelector(".card__delete-button");
+console.log(deleteButtonEl);
 //======
 //Form elemnts
 //======
@@ -86,10 +96,22 @@ function renderCard(cardElement, container) {
 }
 
 function generateCard(card) {
+  //clone template
   const cardElement = cardTemplate.cloneNode(true);
+  //query name element
   cardElement.querySelector(".card__text").textContent = card.name;
-  cardElement.querySelector(".card__img").src = card.link;
+  //query image element
+  const imageEl = cardElement.querySelector(".card__img");
+  imageEl.src = card.link;
+  //query alt element
   cardElement.querySelector(".card__img").alt = card.name;
+  //add event listener(s)
+  imageEl.addEventListener("click", () => {
+    openForm(previewModalEl);
+    previewImageEl.src = card.link;
+    previewImageEl.alt = card.name;
+    previewCaptionEl.textContent = card.name;
+  });
   return cardElement;
 }
 
@@ -98,8 +120,6 @@ function generateCard(card) {
 //======
 
 function openForm(modalEl) {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileAboutInput.value = profileAboutEl.textContent;
   modalEl.classList.add("modal_open");
 }
 
@@ -120,7 +140,9 @@ function submitAddForm(event) {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
-  renderCard(generateCard(newCard), placesElements);
+  const cardElement = generateCard(newCard);
+  placesElements.prepend(cardElement);
+  //renderCard(generateCard(newCard), placesElements);
   closeModal(addModalEl);
 }
 
@@ -128,8 +150,14 @@ function submitAddForm(event) {
 //Event Listeners
 //=====
 
+initialCards.forEach((card) => {
+  renderCard(generateCard(card), placesElements);
+});
+
 //Edit Modal
 profileEditButtonEl.addEventListener("click", () => {
+  editProfileNameInput.value = profileNameEl.textContent;
+  editProfileAboutInput.value = profileAboutEl.textContent;
   openForm(editModalEl);
 });
 
@@ -150,6 +178,9 @@ addCloseButtonEl.addEventListener("click", () => {
 
 addCardsEl.addEventListener("submit", submitAddForm);
 
-initialCards.forEach((card) => {
-  renderCard(generateCard(card), placesElements);
+//Images preview
+previewCloseButtonEl.addEventListener("click", () => {
+  closeModal(previewModalEl);
 });
+
+//Card delete
