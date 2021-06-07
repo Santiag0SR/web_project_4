@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "Images/Yosemite.jpeg",
-  },
-  {
-    name: "Lake Louise",
-    link: "Images/Lake_Louise.jpeg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "Images/Bald_Mountains.jpeg",
-  },
-  {
-    name: "Latemar",
-    link: "Images/Latemar.jpeg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "Images/Vanoise_National_Park.jpeg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "Images/Lago_di_Braies.jpeg",
-  },
-];
-
 //======
 //Wrappers
 //======
@@ -137,7 +110,7 @@ function closeModal(modalEl) {
   modalEl.classList.remove("modal_open");
 }
 
-function submitForm(event) {
+function submitEditProfileForm(event) {
   event.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileAboutEl.textContent = editProfileAboutInput.value;
@@ -175,7 +148,7 @@ profileCloseButtonEl.addEventListener("click", () => {
   closeModal(editModalEl);
 });
 
-editProfileEl.addEventListener("submit", submitForm);
+editProfileEl.addEventListener("submit", submitEditProfileForm);
 
 //Add Modal
 addCardButtonEl.addEventListener("click", () => {
@@ -184,6 +157,7 @@ addCardButtonEl.addEventListener("click", () => {
 
 addCloseButtonEl.addEventListener("click", () => {
   closeModal(addModalEl);
+  addCardsEl.reset();
 });
 
 addCardsEl.addEventListener("submit", submitAddForm);

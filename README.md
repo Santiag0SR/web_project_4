@@ -15,7 +15,7 @@ The purpose of this project is to create a website fully responsive in all devic
 
 Check out my work: https://santiag0sr.github.io/web_project_4/
 
-The project has been reviewed by Yana Petukhova :)
+The project has been reviewed by Yana Petukhova :) and Александр Кудрявцев
 
 ## Technologies and Techniques
 
