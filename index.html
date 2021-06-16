@@ -17,17 +17,27 @@
         ></button>
         <form class="modal__form modal__form_type_edit" name="profile-form">
           <input
+            id="name-input"
             class="modal__form-item modal__form-item_type_name"
             type="text"
             name="profile-name"
             placeholder="Name"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="name-input-error"></span>
           <input
+            id="about-input"
             class="modal__form-item modal__form-item_type_about"
             type="text"
             name="profile-about"
             placeholder="About Me"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span id="about-input-error"></span>
           <button class="modal__save-button button" type="submit">Save</button>
         </form>
       </div>
@@ -41,17 +51,25 @@
         ></button>
         <form class="modal__form modal__form_type_add" name="profile-form">
           <input
+            id="title-input"
             class="modal__form-item modal__form-item_type_title"
             type="text"
             name="card-title"
             placeholder="Title"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="title-input-error"></span>
           <input
+            id="link-input"
             class="modal__form-item modal__form-item_type_image-link"
-            type="text"
+            type="url"
             name="image-link"
             placeholder="Image link"
+            required
           />
+          <span id="link-input-error"></span>
           <button class="modal__save-button button" type="submit">
             Create
           </button>
@@ -107,6 +125,7 @@
         </div>
       </article>
     </template>
+    <script src="scripts/validate.js" type="text/javascript"></script>
     <script src="./scripts/initial-cards.js" type="text/javascript"></script>
     <script src="./scripts/index.js" type="text/javascript"></script>
   </body>
