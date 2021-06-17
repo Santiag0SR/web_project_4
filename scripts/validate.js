@@ -37,13 +37,16 @@ const checkInputValidity = (formEl, input, settings) => {
   }
 };
 
+function checkForm(settings) {
+  if (settings.inputSelector !== "") {
+    checkInputValidity(formEl, input, settings);
+  }
+}
+
 const setEventListeners = (formEl, settings) => {
   const inputs = Array.from(formEl.querySelectorAll(settings.inputSelector));
-  toggleButton(formEl, settings, inputs);
-
-  //emptyForm(inputs);
   inputs.forEach((input) => {
-    input.addEventListener("input", (event) => {
+    input.addEventListener("input", () => {
       // check validity
       checkInputValidity(formEl, input, settings);
       //toggle button
@@ -51,12 +54,6 @@ const setEventListeners = (formEl, settings) => {
     });
   });
 };
-
-//const emptyForm = (inputs) => {
-//if (inputs.textContent === "") {
-//  toggleButton(formEl, settings, inputs);
-// }
-//};
 
 const enableValidation = (settings) => {
   const formElements = Array.from(

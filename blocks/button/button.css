@@ -7,4 +7,6 @@
   background-repeat: no-repeat;
 }
 
-/*opacity: 1;*/
+.button:focus {
+  outline: none;
+}

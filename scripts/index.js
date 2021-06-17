@@ -108,10 +108,20 @@ function generateCard(card) {
 
 function openForm(modalEl) {
   modalEl.classList.add("modal_open");
+  document.addEventListener("keydown", (e) => {
+    if (e.keyCode === 27) {
+      closeModal(modalEl);
+    }
+  });
 }
 
 function closeModal(modalEl) {
   modalEl.classList.remove("modal_open");
+  document.removeEventListener("keydown", (e) => {
+    if (e.keycode === 27) {
+      closeModal(modalEl);
+    }
+  });
 }
 
 function submitEditProfileForm(event) {
@@ -190,14 +200,3 @@ previewModalEl.addEventListener("click", () => {
 });
 
 previewContainerEl.addEventListener("click", modalClickOutside);
-
-//LOG KEY ESCAPE
-document.addEventListener("keydown", pressEsc);
-
-function pressEsc(e) {
-  if (e.key === "Escape") {
-    closeModal(editModalEl);
-    closeModal(addModalEl);
-    closeModal(previewModalEl);
-  }
-}
