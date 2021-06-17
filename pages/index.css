@@ -23,12 +23,15 @@
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__author/footer__author.css");
 @import url("../blocks/modal/modal.css");
+@import url("../blocks/modal/__error/modal__error.css");
+@import url("../blocks/modal/__error/_visible/modal__error_visible.css");
 @import url("../blocks/modal/_open/modal_open.css");
 @import url("../blocks/modal/__text/modal__text.css");
 @import url("../blocks/modal/__save-button/modal__save-button.css");
 @import url("../blocks/modal/__save-button/_disabled/modal__save-button_disabled.css");
 @import url("../blocks/modal/__form/modal__form.css");
 @import url("../blocks/modal/__form-item/modal__form-item.css");
+@import url("../blocks/modal/__form-item/_type/modal__form-item_type_error.css");
 @import url("../blocks/modal/__close-button/modal__close-button.css");
 @import url("../blocks/modal/__close-button/_type/modal__close-button_type_preview.css");
 @import url("../blocks/modal/__box/modal__box.css");

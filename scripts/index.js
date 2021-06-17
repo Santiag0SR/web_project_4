@@ -4,6 +4,7 @@
 const editModalEl = document.querySelector(".modal_type_edit");
 const addModalEl = document.querySelector(".modal_type_add");
 const previewModalEl = document.querySelector(".modal_type_preview");
+const editModalBoxEl = document.querySelector(".modal__box_type_edit");
 
 const editProfileEl = document.querySelector(".modal__form_type_edit");
 const addCardsEl = document.querySelector(".modal__form_type_add");
@@ -144,9 +145,20 @@ profileEditButtonEl.addEventListener("click", () => {
   openForm(editModalEl);
 });
 
-profileCloseButtonEl.addEventListener("click", () => {
+//CLOSE WHEN CLICK ON BACKGROUND
+function modalClickOutside(event) {
+  event.stopPropagation();
+}
+
+profileCloseButtonEl.addEventListener("click", closeModal(editModalEl));
+
+editModalEl.addEventListener("click", () => {
   closeModal(editModalEl);
 });
+
+editModalBoxEl.addEventListener("click", modalClickOutside);
+
+//
 
 editProfileEl.addEventListener("submit", submitEditProfileForm);
 

@@ -9,7 +9,7 @@
   </head>
   <body class="page">
     <div class="modal modal_type_edit">
-      <div class="modal__box">
+      <div class="modal__box modal__box_type_edit">
         <h2 class="modal__text">Edit Profile</h2>
         <button
           class="modal__close-button modal__close-button_type_edit button"
@@ -26,7 +26,7 @@
             minlength="2"
             maxlength="40"
           />
-          <span id="name-input-error"></span>
+          <span id="name-input-error" class="modal__error"></span>
           <input
             id="about-input"
             class="modal__form-item modal__form-item_type_about"
@@ -37,8 +37,8 @@
             minlength="2"
             maxlength="200"
           />
-          <span id="about-input-error"></span>
-          <button class="modal__save-button button" type="submit">Save</button>
+          <span id="about-input-error" class="modal__error"></span>
+          <button class="button modal__save-button" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div class="modal__box">
         <h2 class="modal__text">New Place</h2>
         <button
-          class="modal__close-button modal__close-button_type_add button"
+          class="button modal__close-button modal__close-button_type_add"
           type="button"
         ></button>
         <form class="modal__form modal__form_type_add" name="profile-form">
@@ -57,10 +57,10 @@
             name="card-title"
             placeholder="Title"
             required
-            minlength="2"
+            minlength="1"
             maxlength="40"
           />
-          <span id="title-input-error"></span>
+          <span id="title-input-error" class="modal__error"></span>
           <input
             id="link-input"
             class="modal__form-item modal__form-item_type_image-link"
@@ -69,8 +69,8 @@
             placeholder="Image link"
             required
           />
-          <span id="link-input-error"></span>
-          <button class="modal__save-button button" type="submit">
+          <span id="link-input-error" class="modal__error"></span>
+          <button class="button modal__save-button" type="submit">
             Create
           </button>
         </form>
