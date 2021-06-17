@@ -9,6 +9,9 @@ const editModalBoxEl = document.querySelector(".modal__box_type_edit");
 const editProfileEl = document.querySelector(".modal__form_type_edit");
 const addCardsEl = document.querySelector(".modal__form_type_add");
 const placesElements = document.querySelector(".elements");
+const previewContainerEl = previewModalEl.querySelector(
+  ".modal__preview-figure"
+);
 const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
 const previewCaptionEl = previewModalEl.querySelector(
   ".modal__preview-caption"
@@ -130,6 +133,10 @@ function submitAddForm(event) {
   addCardsEl.reset();
 }
 
+function modalClickOutside(event) {
+  event.stopPropagation();
+}
+
 //======
 //Event Listeners
 //=====
@@ -145,22 +152,15 @@ profileEditButtonEl.addEventListener("click", () => {
   openForm(editModalEl);
 });
 
-//CLOSE WHEN CLICK ON BACKGROUND
-function modalClickOutside(event) {
-  event.stopPropagation();
-}
-
 profileCloseButtonEl.addEventListener("click", closeModal(editModalEl));
+
+editProfileEl.addEventListener("submit", submitEditProfileForm);
 
 editModalEl.addEventListener("click", () => {
   closeModal(editModalEl);
 });
 
-editModalBoxEl.addEventListener("click", modalClickOutside);
-
-//
-
-editProfileEl.addEventListener("submit", submitEditProfileForm);
+editProfileEl.addEventListener("click", modalClickOutside);
 
 //Add Modal
 addCardButtonEl.addEventListener("click", () => {
@@ -174,7 +174,30 @@ addCloseButtonEl.addEventListener("click", () => {
 
 addCardsEl.addEventListener("submit", submitAddForm);
 
-//Images preview
+addModalEl.addEventListener("click", () => {
+  closeModal(addModalEl);
+});
+
+addCardsEl.addEventListener("click", modalClickOutside);
+
+//Preview modal
 previewCloseButtonEl.addEventListener("click", () => {
   closeModal(previewModalEl);
 });
+
+previewModalEl.addEventListener("click", () => {
+  closeModal(previewModalEl);
+});
+
+previewContainerEl.addEventListener("click", modalClickOutside);
+
+//LOG KEY ESCAPE
+document.addEventListener("keydown", pressEsc);
+
+function pressEsc(e) {
+  if (e.key === "Escape") {
+    closeModal(editModalEl);
+    closeModal(addModalEl);
+    closeModal(previewModalEl);
+  }
+}
