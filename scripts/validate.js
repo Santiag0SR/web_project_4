@@ -37,9 +37,21 @@ const checkInputValidity = (formEl, input, settings) => {
   }
 };
 
+const starToggleButton = (formEl, inputs, settings) => {
+  const buttonEditProfile = document.querySelector(
+    ".modal__save-button_type_edit"
+  );
+  if (formEl.contains(buttonEditProfile)) {
+    buttonEditProfile.disabled = false;
+    buttonEditProfile.classList.remove(settings.inactiveButtonClass);
+  } else {
+    toggleButton(formEl, settings, inputs);
+  }
+};
+
 const setEventListeners = (formEl, settings) => {
   const inputs = Array.from(formEl.querySelectorAll(settings.inputSelector));
-  toggleButton(formEl, settings, inputs);
+  starToggleButton(formEl, inputs, settings);
   inputs.forEach((input) => {
     input.addEventListener("input", () => {
       // check validity
