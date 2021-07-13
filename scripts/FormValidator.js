@@ -1,5 +1,6 @@
 class FormValidator {
   constructor(settings, formElement) {
+    this._settings = settings;
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -15,12 +16,12 @@ class FormValidator {
 
   _toggleButton(inputs) {
     const buttonEl = this._formEl.querySelector(this._submitButtonSelector);
-    if (_isValid(inputs)) {
+    if (this._isValid(inputs)) {
       buttonEl.disabled = false;
-      buttonEl.classList.remove(settings.inactiveButtonClass);
+      buttonEl.classList.remove(this._inactiveButtonClass);
     } else {
       buttonEl.disabled = true;
-      buttonEl.classList.add(settings.inactiveButtonClass);
+      buttonEl.classList.add(this._inactiveButtonClass);
     }
   }
 
@@ -42,9 +43,9 @@ class FormValidator {
 
   _checkInputValidity(input) {
     if (input.validity.valid) {
-      _hideInputError(this._formEl, input, settings);
+      this._hideInputError(this._formEl, input, this._settings);
     } else {
-      _showInputError(this._formEl, input, settings);
+      this._showInputError(this._formEl, input, this._settings);
     }
   }
 
@@ -56,7 +57,7 @@ class FormValidator {
       buttonEditProfile.disabled = false;
       buttonEditProfile.classList.remove(this._inactiveButtonClass);
     } else {
-      _toggleButton(this._formEl, settings, inputs);
+      this._toggleButton(this._formEl, this._settings, inputs);
     }
   }
 
@@ -64,20 +65,20 @@ class FormValidator {
     const inputs = Array.from(
       this._formEl.querySelectorAll(this._inputSelector)
     );
-    _starToggleButton(this._formEl, inputs, settings);
+    this._starToggleButton(this._formEl, inputs, this._settings);
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         // check validity
-        _checkInputValidity(this._formEl, input, settings);
+        this._checkInputValidity(this._formEl, input, this._settings);
         //toggle button
-        _toggleButton(this._formEl, settings, inputs);
+        this._toggleButton(this._formEl, this._settings, inputs);
       });
     });
   }
 
   enableValidation() {
     this._formEl.addEventListener("submit", (event) => event.preventDefault());
-    _setEventListeners(this._formEl, settings);
+    this._setEventListeners(this._formEl, this._settings);
   }
 }
 
