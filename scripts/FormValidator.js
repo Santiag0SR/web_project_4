@@ -62,13 +62,13 @@ class FormValidator {
 
   _setEventListeners(formEl) {
     const inputs = Array.from(formEl.querySelectorAll(this._inputSelector));
-    this._starToggleButton(formEl, this._inputs);
+    this._starToggleButton(formEl, inputs);
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         // check validity
         this._checkInputValidity(formEl, input);
         //toggle button
-        this._toggleButton(formEl);
+        this._toggleButton(formEl, inputs);
       });
     });
   }
