@@ -20,6 +20,18 @@ const showInputError = (formEl, input, { errorClass, inputErrorClass }) => {
   errorSpan.classList.add(errorClass);
   input.classList.add(inputErrorClass);
 };
+//PRUEBAS
+const resetValues = (modalEl) => {
+  const input2 = modalEl.querySelectorAll(".modal__form-item");
+  const errorSpan2 = modalEl.querySelectorAll(".modal__error");
+  input2.forEach((item) => {
+    item.classList.remove("modal__form-item_type_error");
+  });
+  errorSpan2.forEach((item) => {
+    item.classList.remove("modal__error_visible");
+    item.textContent = "";
+  });
+};
 
 const hideInputError = (formEl, input, { errorClass, inputErrorClass }) => {
   const errorSpan = formEl.querySelector("#" + input.id + "-error");

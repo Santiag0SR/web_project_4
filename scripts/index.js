@@ -1,10 +1,11 @@
+import FormValidator from "./FormValidator.js";
+
 //======
 //Wrappers
 //======
 const editModalEl = document.querySelector(".modal_type_edit");
 const addModalEl = document.querySelector(".modal_type_add");
 const previewModalEl = document.querySelector(".modal_type_preview");
-const editModalBoxEl = document.querySelector(".modal__box_type_edit");
 
 const editProfileEl = document.querySelector(".modal__form_type_edit");
 const addCardsEl = document.querySelector(".modal__form_type_add");
@@ -122,6 +123,8 @@ function closeModal(modalEl) {
       closeModal(modalEl);
     }
   });
+  //PRUEBAS
+  //resetValues(modalEl);
 }
 
 function submitEditProfileForm(event) {
@@ -200,3 +203,19 @@ previewModalEl.addEventListener("click", () => {
 });
 
 previewContainerEl.addEventListener("click", modalClickOutside);
+
+//VALIDATION
+
+const validationSettings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-item",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__form-item_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(validationSettings, editProfileEl);
+editFormValidator.enableValidation();
+const addFormValidator = new FormValidator(validationSettings, addCardsEl);
+addFormValidator.enableValidation();
