@@ -1,8 +1,26 @@
-// const previewModalEl = document.querySelector(".modal_type_preview");
-// const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
-// const previewCaptionEl = previewModalEl.querySelector(
-//   ".modal__preview-caption"
-// );
+const previewModalEl = document.querySelector(".modal_type_preview");
+const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
+const previewCaptionEl = previewModalEl.querySelector(
+  ".modal__preview-caption"
+);
+
+function openForm(modalEl) {
+  modalEl.classList.add("modal_open");
+  document.addEventListener("keydown", (e) => {
+    if (e.keyCode === 27) {
+      closeModal(modalEl);
+    }
+  });
+}
+
+function closeModal(modalEl) {
+  modalEl.classList.remove("modal_open");
+  document.removeEventListener("keydown", (e) => {
+    if (e.keycode === 27) {
+      closeModal(modalEl);
+    }
+  });
+}
 
 class Card {
   constructor(card, cardSelector) {

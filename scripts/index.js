@@ -73,44 +73,44 @@ const cardSelector = "#card-template";
 function renderCard(cardElement, container) {
   const newCard = new Card(cardElement, container);
   const newCardElement = newCard.getView();
-  container.append(newCardElement);
+  placesElements.prepend(newCardElement);
 }
 
 initialCards.forEach((card) => {
-  renderCard(card, placesElements);
+  renderCard(card, cardSelector);
 });
 
-function generateCard(card) {
-  //clone template
-  const cardElement = cardTemplate.cloneNode(true);
-  //query name element
-  cardElement.querySelector(".card__text").textContent = card.name;
-  //query image element
-  const imageEl = cardElement.querySelector(".card__img");
-  imageEl.src = card.link;
-  //query alt element
-  cardElement.querySelector(".card__img").alt = card.name;
-  //add event listener(s)
-  imageEl.addEventListener("click", () => {
-    openForm(previewModalEl);
-    previewImageEl.src = card.link;
-    previewImageEl.alt = card.name;
-    previewCaptionEl.textContent = card.name;
-  });
-  cardElement
-    .querySelector(".card__delete-button")
-    .addEventListener("click", (event) => {
-      const target = event.target;
-      const removeCard = target.parentElement;
-      removeCard.remove();
-    });
-  cardElement
-    .querySelector(".card__like-button")
-    .addEventListener("click", (evt) => {
-      evt.target.classList.toggle("card__like-button_active");
-    });
-  return cardElement;
-}
+// function generateCard(card) {
+//   //clone template
+//   const cardElement = cardTemplate.cloneNode(true);
+//   //query name element
+//   cardElement.querySelector(".card__text").textContent = card.name;
+//   //query image element
+//   const imageEl = cardElement.querySelector(".card__img");
+//   imageEl.src = card.link;
+//   //query alt element
+//   cardElement.querySelector(".card__img").alt = card.name;
+//   //add event listener(s)
+//   imageEl.addEventListener("click", () => {
+//     openForm(previewModalEl);
+//     previewImageEl.src = card.link;
+//     previewImageEl.alt = card.name;
+//     previewCaptionEl.textContent = card.name;
+//   });
+//   cardElement
+//     .querySelector(".card__delete-button")
+//     .addEventListener("click", (event) => {
+//       const target = event.target;
+//       const removeCard = target.parentElement;
+//       removeCard.remove();
+//     });
+//   cardElement
+//     .querySelector(".card__like-button")
+//     .addEventListener("click", (evt) => {
+//       evt.target.classList.toggle("card__like-button_active");
+//     });
+//   return cardElement;
+// }
 
 //======
 //Handlers
@@ -147,8 +147,7 @@ function submitAddForm(event) {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
-  const cardElement = generateCard(newCard);
-  placesElements.prepend(cardElement);
+  renderCard(newCard, cardSelector);
   closeModal(addModalEl);
   addCardsEl.reset();
 }
