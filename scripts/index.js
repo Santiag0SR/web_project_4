@@ -1,4 +1,5 @@
 import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
 
 //======
 //Wrappers
@@ -63,13 +64,21 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
+const cardSelector = "#card-template";
+
 //======
 //Helper functions
 //======
 
 function renderCard(cardElement, container) {
-  container.append(cardElement);
+  const newCard = new Card(cardElement, container);
+  const newCardElement = newCard.getView();
+  container.append(newCardElement);
 }
+
+initialCards.forEach((card) => {
+  renderCard(card, placesElements);
+});
 
 function generateCard(card) {
   //clone template
@@ -123,8 +132,6 @@ function closeModal(modalEl) {
       closeModal(modalEl);
     }
   });
-  //PRUEBAS
-  //resetValues(modalEl);
 }
 
 function submitEditProfileForm(event) {
@@ -153,10 +160,6 @@ function modalClickOutside(event) {
 //======
 //Event Listeners
 //=====
-
-initialCards.forEach((card) => {
-  renderCard(generateCard(card), placesElements);
-});
 
 //Edit Modal
 profileEditButtonEl.addEventListener("click", () => {
@@ -204,7 +207,13 @@ previewModalEl.addEventListener("click", () => {
 
 previewContainerEl.addEventListener("click", modalClickOutside);
 
+//======
+//CARD GENERATOR
+//======
+
+//======
 //VALIDATION
+//======
 
 const validationSettings = {
   formSelector: ".modal__form",
