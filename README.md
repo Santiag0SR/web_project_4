@@ -23,3 +23,4 @@ The project has been reviewed by Yana Petukhova :) and Александр Куд
 We were introduce to JavasScript and also used CSS and HTML language to create the webpage.
 
 We also organize the code so it is BEM compliant.
+We used the concepts of classes, polymorphism and inheritance to improve our JavaScript.
