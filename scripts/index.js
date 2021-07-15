@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
+import { initialCards, Card } from "./Card.js";
 
 //======
 //Wrappers
@@ -59,15 +59,10 @@ const addCardImageLinkInput = document.querySelector(
 //======
 //Templates
 //======
-
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
 const cardSelector = "#card-template";
 
 //======
-//Helper functions
+//CARD GENERATOR
 //======
 
 function renderCard(cardElement, container) {
@@ -173,10 +168,6 @@ previewModalEl.addEventListener("click", () => {
 });
 
 previewContainerEl.addEventListener("click", modalClickOutside);
-
-//======
-//CARD GENERATOR
-//======
 
 //======
 //VALIDATION

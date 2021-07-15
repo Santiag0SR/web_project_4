@@ -7,7 +7,7 @@ const previewCaptionEl = previewModalEl.querySelector(
 function openForm(modalEl) {
   modalEl.classList.add("modal_open");
   document.addEventListener("keydown", (e) => {
-    if (e.keyCode === 27) {
+    if (e.keycode === 27) {
       closeModal(modalEl);
     }
   });
@@ -21,6 +21,33 @@ function closeModal(modalEl) {
     }
   });
 }
+
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "Images/Yosemite.jpeg",
+  },
+  {
+    name: "Lake Louise",
+    link: "Images/Lake_Louise.jpeg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "Images/Bald_Mountains.jpeg",
+  },
+  {
+    name: "Latemar",
+    link: "Images/Latemar.jpeg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "Images/Vanoise_National_Park.jpeg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "Images/Lago_di_Braies.jpeg",
+  },
+];
 
 class Card {
   constructor(card, cardSelector) {
@@ -74,4 +101,4 @@ class Card {
   }
 }
 
-export default Card;
+export { initialCards, Card };
