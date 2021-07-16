@@ -10,7 +10,7 @@ class FormValidator {
   }
 
   _showInputError = (formEl, input) => {
-    const errorSpan = formEl.querySelector("#" + input.id + "-error");
+    const errorSpan = formEl.querySelector(`#${input.id}-error`);
     // add error message/class
     errorSpan.textContent = input.validationMessage;
     errorSpan.classList.add(this._errorClass);
@@ -18,7 +18,7 @@ class FormValidator {
   };
 
   _hideInputError = (formEl, input) => {
-    const errorSpan = formEl.querySelector("#" + input.id + "-error");
+    const errorSpan = formEl.querySelector(`#${input.id}-error`);
     // add error message/class
     errorSpan.textContent = "";
     errorSpan.classList.remove(this._errorClass);

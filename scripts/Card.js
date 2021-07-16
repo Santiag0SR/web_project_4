@@ -7,7 +7,7 @@ const previewCaptionEl = previewModalEl.querySelector(
 function openForm(modalEl) {
   modalEl.classList.add("modal_open");
   document.addEventListener("keydown", (e) => {
-    if (e.keycode === 27) {
+    if (e.keyCode === 27) {
       closeModal(modalEl);
     }
   });
@@ -16,38 +16,11 @@ function openForm(modalEl) {
 function closeModal(modalEl) {
   modalEl.classList.remove("modal_open");
   document.removeEventListener("keydown", (e) => {
-    if (e.keycode === 27) {
+    if (e.keyCode === 27) {
       closeModal(modalEl);
     }
   });
 }
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "Images/Yosemite.jpeg",
-  },
-  {
-    name: "Lake Louise",
-    link: "Images/Lake_Louise.jpeg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "Images/Bald_Mountains.jpeg",
-  },
-  {
-    name: "Latemar",
-    link: "Images/Latemar.jpeg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "Images/Vanoise_National_Park.jpeg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "Images/Lago_di_Braies.jpeg",
-  },
-];
 
 class Card {
   constructor(card, cardSelector) {
@@ -58,26 +31,35 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector(".card__img").addEventListener("click", () => {
-      openForm(previewModalEl);
-      previewImageEl.src = this._link;
-      previewImageEl.alt = this._name;
-      previewCaptionEl.textContent = this._name;
-    });
+    this._element
+      .querySelector(".card__img")
+      .addEventListener("click", () => this._handlePreviewImg());
 
     this._element
       .querySelector(".card__delete-button")
-      .addEventListener("click", (event) => {
-        const target = event.target;
-        const removeCard = target.parentElement;
-        removeCard.remove();
-      });
+      .addEventListener("click", () => this._handleDeleteIcon());
 
     this._element
       .querySelector(".card__like-button")
-      .addEventListener("click", (evt) => {
-        evt.target.classList.toggle("card__like-button_active");
-      });
+      .addEventListener("click", () => this._handleLikeIcon());
+  }
+
+  _handleLikeIcon() {
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
+  }
+
+  _handleDeleteIcon() {
+    this._element.remove();
+    this._card = null;
+  }
+
+  _handlePreviewImg() {
+    openForm(previewModalEl);
+    previewImageEl.src = this._link;
+    previewImageEl.alt = this._name;
+    previewCaptionEl.textContent = this._name;
   }
 
   _getTemplate() {
@@ -93,12 +75,14 @@ class Card {
     this._getTemplate();
     this._setEventListeners();
 
+    const cardImg = this._element.querySelector(".card__img");
+
     this._element.querySelector(".card__text").textContent = this._name;
-    this._element.querySelector(".card__img").src = this._link;
-    this._element.querySelector(".card__img").alt = this._name;
+    cardImg.src = this._link;
+    cardImg.alt = this._name;
 
     return this._element;
   }
 }
 
-export { initialCards, Card };
+export default Card;

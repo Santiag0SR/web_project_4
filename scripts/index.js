@@ -1,6 +1,6 @@
+import initialCards from "./InitialCards.js";
 import FormValidator from "./FormValidator.js";
-import { initialCards, Card } from "./Card.js";
-
+import Card from "./Card.js";
 //======
 //Wrappers
 //======
@@ -82,7 +82,7 @@ initialCards.forEach((card) => {
 function openForm(modalEl) {
   modalEl.classList.add("modal_open");
   document.addEventListener("keydown", (e) => {
-    if (e.keycode === 27) {
+    if (e.keyCode === 27) {
       closeModal(modalEl);
     }
   });
@@ -91,7 +91,7 @@ function openForm(modalEl) {
 function closeModal(modalEl) {
   modalEl.classList.remove("modal_open");
   document.removeEventListener("keydown", (e) => {
-    if (e.keycode === 27) {
+    if (e.keyCode === 27) {
       closeModal(modalEl);
     }
   });
