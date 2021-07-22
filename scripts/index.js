@@ -1,6 +1,23 @@
 import initialCards from "./InitialCards.js";
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+import Section from "./Section.js";
+import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForms from "./PopupWithForms.js";
+
+/////ADD IMAGE POPUP/////
+
+const addImagePopup = new PopupWithForms({
+  modalSelector: "modal_type_add",
+  handleFormSubmit: (data) => {
+    const newCard = new Card(data, cardSelector);
+    cardList.addItem(newCard.getView());
+  },
+});
+
+addImagePopup.setEventListeners();
+
 //======
 //Wrappers
 //======
@@ -65,15 +82,33 @@ const cardSelector = "#card-template";
 //CARD GENERATOR
 //======
 
-function renderCard(cardElement, container) {
-  const newCard = new Card(cardElement, container);
-  const newCardElement = newCard.getView();
-  placesElements.prepend(newCardElement);
-}
+// NEW CODE
+const cardList = new Section(
+  {
+    renderer: (data) => {
+      const newCard = new Card(data, cardSelector);
+      const cardElement = newCard.getView();
+      cardList.addItem(cardElement);
+    },
+  },
+  "elements"
+);
 
-initialCards.forEach((card) => {
-  renderCard(card, cardSelector);
-});
+cardList.renderItems(initialCards);
+
+// const imagePopup = new PopupWithImage("modal_type_preview");
+
+// NEW CODE
+
+// function renderCard(cardElement, container) {
+//   const newCard = new Card(cardElement, container);
+//   const newCardElement = newCard.getView();
+//   placesElements.prepend(newCardElement);
+// }
+
+// initialCards.forEach((card) => {
+//   renderCard(card, cardSelector);
+// });
 
 //======
 //Handlers
@@ -104,16 +139,16 @@ function submitEditProfileForm(event) {
   closeModal(editModalEl);
 }
 
-function submitAddForm(event) {
-  event.preventDefault();
-  const newCard = {
-    name: addCardTitleInput.value,
-    link: addCardImageLinkInput.value,
-  };
-  renderCard(newCard, cardSelector);
-  closeModal(addModalEl);
-  addCardsEl.reset();
-}
+// function submitAddForm(event) {
+//   event.preventDefault();
+//   const newCard = {
+//     name: addCardTitleInput.value,
+//     link: addCardImageLinkInput.value,
+//   };
+//   renderCard(newCard, cardSelector);
+//   close(addModalEl);
+//   addCardsEl.reset();
+// }
 
 function modalClickOutside(event) {
   event.stopPropagation();
@@ -124,6 +159,7 @@ function modalClickOutside(event) {
 //=====
 
 //Edit Modal
+
 profileEditButtonEl.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileAboutInput.value = profileAboutEl.textContent;
@@ -141,22 +177,22 @@ editModalEl.addEventListener("click", () => {
 editProfileEl.addEventListener("click", modalClickOutside);
 
 //Add Modal
-addCardButtonEl.addEventListener("click", () => {
-  openForm(addModalEl);
-});
+// addCardButtonEl.addEventListener("click", () => {
+//   openForm(addModalEl);
+// });
 
-addCloseButtonEl.addEventListener("click", () => {
-  closeModal(addModalEl);
-  addCardsEl.reset();
-});
+// addCloseButtonEl.addEventListener("click", () => {
+//   closeModal(addModalEl);
+//   addCardsEl.reset();
+// });
 
-addCardsEl.addEventListener("submit", submitAddForm);
+// addCardsEl.addEventListener("submit", submitAddForm);
 
-addModalEl.addEventListener("click", () => {
-  closeModal(addModalEl);
-});
+// addModalEl.addEventListener("click", () => {
+//   closeModal(addModalEl);
+// });
 
-addCardsEl.addEventListener("click", modalClickOutside);
+// addCardsEl.addEventListener("click", modalClickOutside);
 
 //Preview modal
 previewCloseButtonEl.addEventListener("click", () => {

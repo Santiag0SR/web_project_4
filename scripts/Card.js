@@ -30,6 +30,15 @@ class Card {
     this._cardTemplate = cardSelector;
   }
 
+  _getTemplate() {
+    const template = document
+      .querySelector(this._cardTemplate)
+      .content.querySelector(".card")
+      .cloneNode(true);
+
+    this._element = template;
+  }
+
   _setEventListeners() {
     this._element
       .querySelector(".card__img")
@@ -60,15 +69,6 @@ class Card {
     previewImageEl.src = this._link;
     previewImageEl.alt = this._name;
     previewCaptionEl.textContent = this._name;
-  }
-
-  _getTemplate() {
-    const template = document
-      .querySelector(this._cardTemplate)
-      .content.querySelector(".card")
-      .cloneNode(true);
-
-    this._element = template;
   }
 
   getView() {
