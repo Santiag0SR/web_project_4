@@ -8,8 +8,8 @@ export default class PopupWithForms extends Popup {
     this._handleFormSubmit = handleFormSubmit;
   }
 
-  _getImputValues() {
-    const addCardTitleInput = document.querySelector(
+  _getInputValues() {
+    const addCardTitleInput = this._modalForm.querySelector(
       ".modal__form-item_type_title"
     );
     const addCardImageLinkInput = document.querySelector(
@@ -25,14 +25,15 @@ export default class PopupWithForms extends Popup {
   }
 
   setEventListeners() {
+    this._getInputValues();
+
+    this._modalForm.addEventListener("submit", () => {
+      console.log(this._newCard);
+    });
+
     const addCardButtonEl = document.querySelector(".profile__add-button");
     addCardButtonEl.addEventListener("click", () => {
       super.open();
-    });
-
-    this._modalForm.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleFormSubmit(this._getImputValues());
     });
 
     super._setEventListeners();

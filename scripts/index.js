@@ -6,18 +6,6 @@ import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForms from "./PopupWithForms.js";
 
-/////ADD IMAGE POPUP/////
-
-const addImagePopup = new PopupWithForms({
-  modalSelector: "modal_type_add",
-  handleFormSubmit: (data) => {
-    const newCard = new Card(data, cardSelector);
-    cardList.addItem(newCard.getView());
-  },
-});
-
-addImagePopup.setEventListeners();
-
 //======
 //Wrappers
 //======
@@ -95,6 +83,18 @@ const cardList = new Section(
 );
 
 cardList.renderItems(initialCards);
+
+/////ADD IMAGE POPUP/////
+
+const addImagePopup = new PopupWithForms({
+  modalSelector: "modal_type_add",
+  handleFormSubmit: (data) => {
+    const card = new Card(data, cardSelector);
+    cardList.addItem(card.getView());
+  },
+});
+
+addImagePopup.setEventListeners();
 
 // const imagePopup = new PopupWithImage("modal_type_preview");
 
