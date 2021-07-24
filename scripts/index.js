@@ -5,6 +5,7 @@ import Section from "./Section.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForms from "./PopupWithForms.js";
+import UserInfo from "./UserInfo.js";
 
 //======
 //Wrappers
@@ -65,6 +66,8 @@ const addCardImageLinkInput = document.querySelector(
 //Templates
 //======
 const cardSelector = "#card-template";
+const profileNameSelector = "profile__name";
+const profileAboutSelector = "profile__about";
 
 //======
 //CARD GENERATOR
@@ -96,6 +99,20 @@ const addImagePopup = new PopupWithForms({
 
 addImagePopup.setEventListeners();
 
+const userInfo = new UserInfo({
+  userNameSelector: profileNameSelector,
+  userAboutSelector: profileAboutSelector,
+});
+
+const userInfoPopup = new PopupWithForms({
+  modalSelector: "modal_type_edit",
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
+
+userInfoPopup.setEventListeners();
+
 // const imagePopup = new PopupWithImage("modal_type_preview");
 
 // NEW CODE
@@ -114,30 +131,30 @@ addImagePopup.setEventListeners();
 //Handlers
 //======
 
-function openForm(modalEl) {
-  modalEl.classList.add("modal_open");
-  document.addEventListener("keydown", (e) => {
-    if (e.keyCode === 27) {
-      closeModal(modalEl);
-    }
-  });
-}
+// function openForm(modalEl) {
+//   modalEl.classList.add("modal_open");
+//   document.addEventListener("keydown", (e) => {
+//     if (e.keyCode === 27) {
+//       closeModal(modalEl);
+//     }
+//   });
+// }
 
-function closeModal(modalEl) {
-  modalEl.classList.remove("modal_open");
-  document.removeEventListener("keydown", (e) => {
-    if (e.keyCode === 27) {
-      closeModal(modalEl);
-    }
-  });
-}
+// function closeModal(modalEl) {
+//   modalEl.classList.remove("modal_open");
+//   document.removeEventListener("keydown", (e) => {
+//     if (e.keyCode === 27) {
+//       closeModal(modalEl);
+//     }
+//   });
+// }
 
-function submitEditProfileForm(event) {
-  event.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileAboutEl.textContent = editProfileAboutInput.value;
-  closeModal(editModalEl);
-}
+// function submitEditProfileForm(event) {
+//   event.preventDefault();
+//   profileNameEl.textContent = editProfileNameInput.value;
+//   profileAboutEl.textContent = editProfileAboutInput.value;
+//   closeModal(editModalEl);
+// }
 
 // function submitAddForm(event) {
 //   event.preventDefault();
@@ -160,21 +177,21 @@ function modalClickOutside(event) {
 
 //Edit Modal
 
-profileEditButtonEl.addEventListener("click", () => {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileAboutInput.value = profileAboutEl.textContent;
-  openForm(editModalEl);
-});
+// profileEditButtonEl.addEventListener("click", () => {
+//   editProfileNameInput.value = profileNameEl.textContent;
+//   editProfileAboutInput.value = profileAboutEl.textContent;
+//   openForm(editModalEl);
+// });
 
-profileCloseButtonEl.addEventListener("click", closeModal(editModalEl));
+// profileCloseButtonEl.addEventListener("click", closeModal(editModalEl));
 
-editProfileEl.addEventListener("submit", submitEditProfileForm);
+// editProfileEl.addEventListener("submit", submitEditProfileForm);
 
-editModalEl.addEventListener("click", () => {
-  closeModal(editModalEl);
-});
+// editModalEl.addEventListener("click", () => {
+//   closeModal(editModalEl);
+// });
 
-editProfileEl.addEventListener("click", modalClickOutside);
+// editProfileEl.addEventListener("click", modalClickOutside);
 
 //Add Modal
 // addCardButtonEl.addEventListener("click", () => {
