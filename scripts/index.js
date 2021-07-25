@@ -10,64 +10,63 @@ import UserInfo from "./UserInfo.js";
 //======
 //Wrappers
 //======
-const editModalEl = document.querySelector(".modal_type_edit");
-const addModalEl = document.querySelector(".modal_type_add");
-const previewModalEl = document.querySelector(".modal_type_preview");
+// const editModalEl = document.querySelector(".modal_type_edit");
+// const addModalEl = document.querySelector(".modal_type_add");
+// const previewModalEl = document.querySelector(".modal_type_preview");
 
 const editProfileEl = document.querySelector(".modal__form_type_edit");
 const addCardsEl = document.querySelector(".modal__form_type_add");
-const placesElements = document.querySelector(".elements");
-const previewContainerEl = previewModalEl.querySelector(
-  ".modal__preview-figure"
-);
-const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
-const previewCaptionEl = previewModalEl.querySelector(
-  ".modal__preview-caption"
-);
+// const placesElements = document.querySelector(".elements");
+// const previewContainerEl = previewModalEl.querySelector(
+//   ".modal__preview-figure"
+// );
+// const previewImageEl = previewModalEl.querySelector(".modal__preview-image");
+// const previewCaptionEl = previewModalEl.querySelector(
+//   ".modal__preview-caption"
+// );
 
 //======
 //Buttons and other DOM elements
 //======
 const profileEditButtonEl = document.querySelector(".profile__edit-button");
-const profileCloseButtonEl = document.querySelector(
-  ".modal__close-button_type_edit"
-);
+// const profileCloseButtonEl = document.querySelector(
+//   ".modal__close-button_type_edit"
+// );
 const profileNameEl = document.querySelector(".profile__name");
 const profileAboutEl = document.querySelector(".profile__about");
 const addCardButtonEl = document.querySelector(".profile__add-button");
-const addCloseButtonEl = document.querySelector(
-  ".modal__close-button_type_add"
-);
-const previewCloseButtonEl = document.querySelector(
-  ".modal__close-button_type_preview"
-);
+// const addCloseButtonEl = document.querySelector(
+//   ".modal__close-button_type_add"
+// );
+// const previewCloseButtonEl = document.querySelector(
+//   ".modal__close-button_type_preview"
+// );
 
 //======
 //Form elemnts
 //======
 
 //Edit Modal
-const editProfileNameInput = document.querySelector(
-  ".modal__form-item_type_name"
-);
-const editProfileAboutInput = document.querySelector(
-  ".modal__form-item_type_about"
-);
+// const editProfileNameInput = document.querySelector(
+//   ".modal__form-item_type_name"
+// );
+// const editProfileAboutInput = document.querySelector(
+//   ".modal__form-item_type_about"
+// );
 
-//Add Modal
-const addCardTitleInput = document.querySelector(
-  ".modal__form-item_type_title"
-);
-const addCardImageLinkInput = document.querySelector(
-  ".modal__form-item_type_image-link"
-);
+// //Add Modal
+// const addCardTitleInput = document.querySelector(
+//   ".modal__form-item_type_title"
+// );
+// const addCardImageLinkInput = document.querySelector(
+//   ".modal__form-item_type_image-link"
+// );
 
 //======
 //Templates
 //======
 const cardSelector = "#card-template";
-const profileNameSelector = "profile__name";
-const profileAboutSelector = "profile__about";
+const previewModalSelector = "modal_type_preview";
 
 //======
 //CARD GENERATOR
@@ -76,8 +75,16 @@ const profileAboutSelector = "profile__about";
 // NEW CODE
 const cardList = new Section(
   {
-    renderer: (data) => {
-      const newCard = new Card(data, cardSelector);
+    renderer: (card) => {
+      const newCard = new Card(
+        {
+          card,
+          handlePreviewImg: () => {
+            imageModal.open(card);
+          },
+        },
+        cardSelector
+      );
       const cardElement = newCard.getView();
       cardList.addItem(cardElement);
     },
@@ -91,17 +98,32 @@ cardList.renderItems(initialCards);
 
 const addImagePopup = new PopupWithForms({
   modalSelector: "modal_type_add",
-  handleFormSubmit: (data) => {
-    const card = new Card(data, cardSelector);
-    cardList.addItem(card.getView());
+  handleFormSubmit: (card) => {
+    const newCard = new Card(
+      {
+        card,
+        handlePreviewImg: () => {
+          imageModal.open(card);
+        },
+      },
+      cardSelector
+    );
+    cardList.addItem(newCard.getView());
   },
 });
 
 addImagePopup.setEventListeners();
 
+/////PREVIEW IMAGE POPUP/////
+const imageModal = new PopupWithImage("modal_type_preview");
+
+// imageModal.setEventListeners("modal_type_preview");
+
+/////EDIT PROFILE POPUP/////
+
 const userInfo = new UserInfo({
-  userNameSelector: profileNameSelector,
-  userAboutSelector: profileAboutSelector,
+  userNameSelector: profileNameEl,
+  userAboutSelector: profileAboutEl,
 });
 
 const userInfoPopup = new PopupWithForms({
@@ -112,6 +134,16 @@ const userInfoPopup = new PopupWithForms({
 });
 
 userInfoPopup.setEventListeners();
+
+/////POPUP BUTTONS/////
+
+addCardButtonEl.addEventListener("click", () => {
+  addImagePopup.open();
+});
+
+profileEditButtonEl.addEventListener("click", () => {
+  userInfoPopup.open();
+});
 
 // const imagePopup = new PopupWithImage("modal_type_preview");
 
@@ -167,9 +199,9 @@ userInfoPopup.setEventListeners();
 //   addCardsEl.reset();
 // }
 
-function modalClickOutside(event) {
-  event.stopPropagation();
-}
+// function modalClickOutside(event) {
+//   event.stopPropagation();
+// }
 
 //======
 //Event Listeners
@@ -212,15 +244,15 @@ function modalClickOutside(event) {
 // addCardsEl.addEventListener("click", modalClickOutside);
 
 //Preview modal
-previewCloseButtonEl.addEventListener("click", () => {
-  closeModal(previewModalEl);
-});
+// previewCloseButtonEl.addEventListener("click", () => {
+//   closeModal(previewModalEl);
+// });
 
-previewModalEl.addEventListener("click", () => {
-  closeModal(previewModalEl);
-});
+// previewModalEl.addEventListener("click", () => {
+//   closeModal(previewModalEl);
+// });
 
-previewContainerEl.addEventListener("click", modalClickOutside);
+// previewContainerEl.addEventListener("click", modalClickOutside);
 
 //======
 //VALIDATION

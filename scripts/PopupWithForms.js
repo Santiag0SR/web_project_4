@@ -42,16 +42,6 @@ export default class PopupWithForms extends Popup {
       this.close();
     });
 
-    const addCardButtonEl = document.querySelector(".profile__add-button");
-    addCardButtonEl.addEventListener("click", () => {
-      super.open();
-    });
-
-    const profileEditButtonEl = document.querySelector(".profile__edit-button");
-    profileEditButtonEl.addEventListener("click", () => {
-      super.open();
-    });
-
     super._setEventListeners();
   }
 

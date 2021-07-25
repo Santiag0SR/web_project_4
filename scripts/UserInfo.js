@@ -1,14 +1,11 @@
-import Popup from "./Popup.js";
-import PopupWithForms from "./PopupWithForms.js";
-
 export default class UserInfo {
-  constructor({ userNameSelector, userDescriptionSelector }) {
+  constructor({ userNameSelector, userAboutSelector }) {
     this._userNameSelector = userNameSelector;
-    this._userDescriptionSelector = userDescriptionSelector;
+    this._userAboutSelector = userAboutSelector;
   }
 
-  setUserInfo() {
-    const { name: name, link: about } = this._formValues;
-    console.log(this._formValues);
+  setUserInfo(data) {
+    this._userNameSelector.textContent = data.name;
+    this._userAboutSelector.textContent = data.link;
   }
 }
