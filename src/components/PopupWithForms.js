@@ -1,4 +1,3 @@
-import { editConstants } from "../utils/constants.js";
 import Popup from "./Popup.js";
 
 export default class PopupWithForms extends Popup {

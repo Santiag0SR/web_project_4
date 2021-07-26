@@ -25,15 +25,12 @@ class Card {
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteIcon());
 
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => this._handleLikeIcon());
+    this._likeButton = this._element.querySelector(".card__like-button");
+    this._likeButton.addEventListener("click", () => this._handleLikeIcon());
   }
 
   _handleLikeIcon() {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   _handleDeleteIcon() {

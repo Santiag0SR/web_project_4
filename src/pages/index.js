@@ -1,6 +1,6 @@
 import "./index.css";
 
-import initialCards from "../components/InitialCards.js";
+import initialCards from "../utils/InitialCards.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -32,7 +32,7 @@ const cardList = new Section(
       cardList.addItem(cardElement);
     },
   },
-  "elements"
+  cardConstants.placeSelector
 );
 
 const userInfo = new UserInfo({
@@ -86,13 +86,15 @@ userInfoPopup.setEventListeners();
 /////POPUP BUTTONS/////
 
 addConstants.addCardButtonEl.addEventListener("click", () => {
+  addFormValidator.resetValidation();
   addImagePopup.open();
 });
 
 editConstants.profileEditButtonEl.addEventListener("click", () => {
-  editConstants.editProfileNameInput.value =
-    editConstants.profileNameEl.textContent;
-  editConstants.editProfileAboutInput.value =
-    editConstants.profileAboutEl.textContent;
+  const profileData = userInfo.getUserInfo();
+  editConstants.editProfileNameInput.value = profileData.name;
+  editConstants.editProfileAboutInput.value = profileData.about;
+
+  editFormValidator.resetValidation();
   userInfoPopup.open();
 });

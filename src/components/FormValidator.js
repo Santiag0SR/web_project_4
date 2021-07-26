@@ -33,18 +33,6 @@ class FormValidator {
     }
   };
 
-  _starToggleButton(formEl, inputs) {
-    const buttonEditProfile = document.querySelector(
-      ".modal__save-button_type_edit"
-    );
-    if (formEl.contains(buttonEditProfile)) {
-      buttonEditProfile.disabled = false;
-      buttonEditProfile.classList.remove(this._inactiveButtonClass);
-    } else {
-      this._toggleButton(formEl, inputs);
-    }
-  }
-
   _isValid = (inputs) => {
     return inputs.every((input) => input.validity.valid);
   };
@@ -62,7 +50,7 @@ class FormValidator {
 
   _setEventListeners(formEl) {
     const inputs = Array.from(formEl.querySelectorAll(this._inputSelector));
-    this._starToggleButton(formEl, inputs);
+    this._toggleButton(formEl, inputs);
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         // check validity
@@ -70,6 +58,18 @@ class FormValidator {
         //toggle button
         this._toggleButton(formEl, inputs);
       });
+    });
+  }
+
+  resetValidation() {
+    const inputs = Array.from(
+      this._formEl.querySelectorAll(this._inputSelector)
+    );
+
+    this._toggleButton(this._formEl, inputs);
+
+    inputs.forEach((input) => {
+      this._hideInputError(this._formEl, input);
     });
   }
 

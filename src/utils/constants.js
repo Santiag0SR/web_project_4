@@ -10,6 +10,7 @@ export const validationSettings = {
 
 export const cardConstants = {
   cardSelector: "#card-template",
+  placeSelector: "elements",
 };
 
 export const previewConstants = {
