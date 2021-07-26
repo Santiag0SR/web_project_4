@@ -24,3 +24,5 @@ We were introduce to JavasScript and also used CSS and HTML language to create t
 
 We also organize the code so it is BEM compliant.
 We used the concepts of classes, polymorphism and inheritance to improve our JavaScript.
+Object Oriented JavaScript.
+Used Webpack to improve performance.
