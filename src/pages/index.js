@@ -16,18 +16,24 @@ import {
   addConstants,
 } from "../utils/constants.js";
 
+const createCard = (card) => {
+  const cardInstance = new Card(
+    {
+      card,
+      handlePreviewImg: () => {
+        imageModal.open(card);
+      },
+    },
+    cardConstants.cardSelector
+  );
+
+  return cardInstance;
+};
+
 const cardList = new Section(
   {
     renderer: (card) => {
-      const newCard = new Card(
-        {
-          card,
-          handlePreviewImg: () => {
-            imageModal.open(card);
-          },
-        },
-        cardConstants.cardSelector
-      );
+      const newCard = createCard(card);
       const cardElement = newCard.getView();
       cardList.addItem(cardElement);
     },
@@ -43,15 +49,7 @@ const userInfo = new UserInfo({
 const addImagePopup = new PopupWithForms({
   modalSelector: addConstants.addModalSelector,
   handleFormSubmit: (card) => {
-    const newCard = new Card(
-      {
-        card,
-        handlePreviewImg: () => {
-          imageModal.open(card);
-        },
-      },
-      cardConstants.cardSelector
-    );
+    const newCard = createCard(card);
     cardList.addItem(newCard.getView());
   },
 });
