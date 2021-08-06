@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AroundTheUS</title>
+  <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+  <body class="page">
+    <div class="modal modal_type_edit">
+      <div class="modal__box modal__box_type_edit">
+        <button
+          class="modal__close-button modal__close-button_type_edit button"
+          type="button"
+        ></button>
+        <form class="modal__form modal__form_type_edit" name="profile-form">
+          <h2 class="modal__text">Edit Profile</h2>
+          <input
+            id="name-input"
+            class="modal__form-item modal__form-item_type_name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span id="name-input-error" class="modal__error"></span>
+          <input
+            id="about-input"
+            class="modal__form-item modal__form-item_type_about"
+            type="text"
+            name="about"
+            placeholder="About Me"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span id="about-input-error" class="modal__error"></span>
+          <button
+            class="button modal__save-button modal__save-button_type_edit"
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_type_add">
+      <div class="modal__box">
+        <button
+          class="button modal__close-button modal__close-button_type_add"
+          type="button"
+        ></button>
+        <form class="modal__form modal__form_type_add" name="add-form">
+          <h2 class="modal__text">New Place</h2>
+          <input
+            id="title-input"
+            class="modal__form-item modal__form-item_type_title"
+            type="text"
+            name="name"
+            placeholder="Title"
+            required
+            minlength="1"
+            maxlength="40"
+          />
+          <span id="title-input-error" class="modal__error"></span>
+          <input
+            id="link-input"
+            class="modal__form-item modal__form-item_type_image-link"
+            type="url"
+            name="link"
+            placeholder="Image link"
+            required
+          />
+          <span id="link-input-error" class="modal__error"></span>
+          <button class="button modal__save-button" type="submit">
+            Create
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_type_preview">
+      <div class="modal__box modal__box_type_preview">
+        <button
+          class="modal__close-button modal__close-button_type_preview button"
+          type="button"
+        ></button>
+        <figure class="modal__preview-figure">
+          <img class="modal__preview-image" />
+          <figcaption class="modal__preview-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <header class="header">
+      <img
+        class="header__logo"
+        src="4e8e0a1d604782a0dff8.svg"
+        alt="Around the
+      US"
+      />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img
+            src="6c8c726bba57b98353e5.png"
+            class="profile__avatar"
+            alt="Jacques Cousteau"
+          />
+          <div class="profile__text-container">
+            <h1 class="profile__name">Jaques Cousteau</h1>
+            <button class="button profile__edit-button" type="button"></button>
+            <p class="profile__about">Explorer</p>
+          </div>
+        </div>
+        <button class="button profile__add-button" type="button"></button>
+      </section>
+      <!-- places elements-->
+      <section class="elements"></section>
+    </main>
+    <footer class="footer">
+      <p class="footer__author">
+        &copy;2021 Around The U.S. by Santiago Sánchez-Romero
+      </p>
+    </footer>
+    <template id="card-template">
+      <article class="card">
+        <button class="button card__delete-button" type="button"></button>
+        <img class="card__img" />
+        <div class="card__text-container">
+          <h2 class="card__text"></h2>
+          <button class="button card__like-button" type="button"></button>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>
