@@ -1,8 +1,9 @@
 class Card {
-  constructor({ card, handlePreviewImg }, cardSelector) {
+  constructor({ card, handlePreviewImg, handleDeleteIcon }, cardSelector) {
     this._name = card.name;
     this._link = card.link;
     this._handlePreviewImg = handlePreviewImg;
+    this._handleDeleteIcon = handleDeleteIcon;
 
     this._cardTemplate = cardSelector;
   }
@@ -23,7 +24,7 @@ class Card {
 
     this._element
       .querySelector(".card__delete-button")
-      .addEventListener("click", () => this._handleDeleteIcon());
+      .addEventListener("click", (evt) => this._handleDeleteIcon(evt));
 
     this._likeButton = this._element.querySelector(".card__like-button");
     this._likeButton.addEventListener("click", () => this._handleLikeIcon());
@@ -33,10 +34,10 @@ class Card {
     this._likeButton.classList.toggle("card__like-button_active");
   }
 
-  _handleDeleteIcon() {
-    this._element.remove();
-    this._card = null;
-  }
+  // _handleDeleteIcon() {
+  //   this._element.remove();
+  //   this._card = null;
+  // }
 
   getView() {
     this._getTemplate();

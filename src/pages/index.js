@@ -7,6 +7,8 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForms from "../components/PopupWithForms.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+import PopupDeleteCard from "../components/PopupDeleteCard";
 
 import {
   validationSettings,
@@ -16,12 +18,43 @@ import {
   addConstants,
 } from "../utils/constants.js";
 
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-13",
+  headers: {
+    authorization: "0f98077f-1b08-4829-ae57-6f81ab47380c",
+    "Content-Type": "application/json",
+  },
+});
+
+const deleteCard = new PopupDeleteCard({
+  modalSelector: addConstants.deleteCardsEl,
+  handleFormSubmit: (cardElement, cardId) => {
+    api.deleteCard(cardId).then(() => {
+      cardElement.remove();
+      deleteCard.close();
+    });
+  },
+});
+
+deleteCard.setEventListeners();
+
+api.getInitialProfile().then((res) => {
+  userInfo.setUserInfo(res);
+});
+
+api.getInitialCards().then((res) => {
+  cardList.renderItems(res);
+});
+
 const createCard = (card) => {
   const cardInstance = new Card(
     {
       card,
       handlePreviewImg: () => {
         imageModal.open(card);
+      },
+      handleDeleteIcon: (evt) => {
+        deleteCard.open(evt, card._id);
       },
     },
     cardConstants.cardSelector
@@ -44,20 +77,35 @@ const cardList = new Section(
 const userInfo = new UserInfo({
   userNameSelector: editConstants.profileNameEl,
   userAboutSelector: editConstants.profileAboutEl,
+  userAvatarSelector: editConstants.profileAvatarEl,
 });
+
+// const deleteCardPopup = new PopupWithForms({
+//   modalSelector: addConstants.addModalSelector,
+//   handleFormSubmit: (card) => {
+//     api.fetchCard(card).then((cardData) => {
+//       const newCard = createCard(cardData);
+//       cardList.addItem(newCard.getView());
+//     });
+//   },
+// });
 
 const addImagePopup = new PopupWithForms({
   modalSelector: addConstants.addModalSelector,
   handleFormSubmit: (card) => {
-    const newCard = createCard(card);
-    cardList.addItem(newCard.getView());
+    api.fetchCard(card).then((cardData) => {
+      const newCard = createCard(cardData);
+      cardList.addItem(newCard.getView());
+    });
   },
 });
 
 const userInfoPopup = new PopupWithForms({
   modalSelector: editConstants.editModalSelector,
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+  handleFormSubmit: (profile) => {
+    api.fetchProfileInfo(profile).then((profileData) => {
+      userInfo.setUserInfo(profileData);
+    });
   },
 });
 
@@ -74,8 +122,6 @@ const addFormValidator = new FormValidator(
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-
-cardList.renderItems(initialCards);
 
 addImagePopup.setEventListeners();
 imageModal.setEventListeners();
