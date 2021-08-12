@@ -14,7 +14,7 @@
           type="button"
         ></button>
         <form class="modal__form modal__form_type_delete" name="profile-form">
-          <h2 class="modal__text">Are you sure?</h2>
+          <h2 class="modal__text modal__text_type_delete">Are you sure?</h2>
           <button
             class="button modal__save-button modal__save-button_type_delete"
             type="submit"
@@ -120,11 +120,17 @@
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img
-            src="<%=require('./images/Jacques_Cousteau.png')%>"
-            class="profile__avatar"
-            alt="Jacques Cousteau"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="<%=require('./images/Jacques_Cousteau.png')%>"
+              class="profile__avatar"
+              alt="Jacques Cousteau"
+            />
+            <button
+              class="button profile__avatar-button"
+              type="button"
+            ></button>
+          </div>
           <div class="profile__text-container">
             <h1 class="profile__name">Jaques Cousteau</h1>
             <button class="button profile__edit-button" type="button"></button>

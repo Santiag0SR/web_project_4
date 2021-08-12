@@ -4,6 +4,7 @@ class Card {
     this._link = card.link;
     this._handlePreviewImg = handlePreviewImg;
     this._handleDeleteIcon = handleDeleteIcon;
+    this._ownerId = card.owner._id;
 
     this._cardTemplate = cardSelector;
   }
@@ -22,9 +23,14 @@ class Card {
       .querySelector(".card__img")
       .addEventListener("click", () => this._handlePreviewImg());
 
-    this._element
-      .querySelector(".card__delete-button")
-      .addEventListener("click", (evt) => this._handleDeleteIcon(evt));
+    this._deleteButton = this._element.querySelector(".card__delete-button");
+    if (this._ownerId === "3aaa3ba0eaedbec067155932") {
+      this._deleteButton.addEventListener("click", (evt) =>
+        this._handleDeleteIcon(evt)
+      );
+    } else {
+      this._deleteButton.remove();
+    }
 
     this._likeButton = this._element.querySelector(".card__like-button");
     this._likeButton.addEventListener("click", () => this._handleLikeIcon());

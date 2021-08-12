@@ -43,7 +43,7 @@ api.getInitialProfile().then((res) => {
 });
 
 api.getInitialCards().then((res) => {
-  cardList.renderItems(res);
+  cardList.renderItems(res.reverse());
 });
 
 const createCard = (card) => {

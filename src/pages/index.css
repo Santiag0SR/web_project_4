@@ -10,6 +10,8 @@
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__edit-button/profile__edit-button.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__avatar-button/profile__avatar-button.css");
+@import url("../blocks/profile/__avatar-container/profile__avatar-container.css");
 @import url("../blocks/profile/__add-button/profile__add-button.css");
 @import url("../blocks/profile/__about/profile__about.css");
 @import url("../blocks/elements/elements.css");
@@ -27,8 +29,10 @@
 @import url("../blocks/modal/__error/_visible/modal__error_visible.css");
 @import url("../blocks/modal/_open/modal_open.css");
 @import url("../blocks/modal/__text/modal__text.css");
+@import url("../blocks/modal/__text/_type/modal__text_type_delete.css");
 @import url("../blocks/modal/__save-button/modal__save-button.css");
 @import url("../blocks/modal/__save-button/_disabled/modal__save-button_disabled.css");
+@import url("../blocks/modal/__save-button/_type/modal__save-button_type_delete.css");
 @import url("../blocks/modal/__form/modal__form.css");
 @import url("../blocks/modal/__form-item/modal__form-item.css");
 @import url("../blocks/modal/__form-item/_type/modal__form-item_type_error.css");
