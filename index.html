@@ -24,6 +24,27 @@
         </form>
       </div>
     </div>
+    <div class="modal modal_type_avatar">
+      <div class="modal__box">
+        <button
+          class="button modal__close-button modal__close-button_type_add"
+          type="button"
+        ></button>
+        <form class="modal__form modal__form_type_add" name="add-form">
+          <h2 class="modal__text">Change profile picture</h2>
+          <input
+            id="link-input"
+            class="modal__form-item modal__form-item_type_image-link"
+            type="url"
+            name="link"
+            placeholder="Image link"
+            required
+          />
+          <span id="link-input-error" class="modal__error"></span>
+          <button class="button modal__save-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
     <div class="modal modal_type_edit">
       <div class="modal__box modal__box_type_edit">
         <button
