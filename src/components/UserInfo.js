@@ -22,6 +22,7 @@ export default class UserInfo {
     this.userData = {
       name: this._userNameSelector.textContent,
       about: this._userAboutSelector.textContent,
+      avatar: this._userAvatarSelector.src,
     };
 
     return this.userData;
@@ -30,6 +31,10 @@ export default class UserInfo {
   setUserInfo(data) {
     this._userNameSelector.textContent = data.name;
     this._userAboutSelector.textContent = data.about;
+    this._userAvatarSelector.src = data.avatar;
+  }
+
+  setAvatarImg(data) {
     this._userAvatarSelector.src = data.avatar;
   }
 }

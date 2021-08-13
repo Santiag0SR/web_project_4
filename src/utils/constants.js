@@ -23,9 +23,12 @@ export const editConstants = {
   profileNameEl: document.querySelector(".profile__name"),
   profileAboutEl: document.querySelector(".profile__about"),
   profileAvatarEl: document.querySelector(".profile__avatar"),
+  profileAvatarForm: document.querySelector(".modal__form_type_avatar"),
+  profileAvatarButtonEl: document.querySelector(".profile__avatar-button"),
   editProfileNameInput: document.querySelector(".modal__form-item_type_name"),
   editProfileAboutInput: document.querySelector(".modal__form-item_type_about"),
   editModalSelector: "modal_type_edit",
+  avatarModalSelector: "modal_type_avatar",
 };
 
 export const addConstants = {

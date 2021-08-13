@@ -56,6 +56,11 @@ const createCard = (card) => {
       handleDeleteIcon: (evt) => {
         deleteCard.open(evt, card._id);
       },
+      handleLikeButton: () => {
+        api.likeCard(card._id).then(() => {
+          console.log("hello");
+        });
+      },
     },
     cardConstants.cardSelector
   );
@@ -80,16 +85,6 @@ const userInfo = new UserInfo({
   userAvatarSelector: editConstants.profileAvatarEl,
 });
 
-// const deleteCardPopup = new PopupWithForms({
-//   modalSelector: addConstants.addModalSelector,
-//   handleFormSubmit: (card) => {
-//     api.fetchCard(card).then((cardData) => {
-//       const newCard = createCard(cardData);
-//       cardList.addItem(newCard.getView());
-//     });
-//   },
-// });
-
 const addImagePopup = new PopupWithForms({
   modalSelector: addConstants.addModalSelector,
   handleFormSubmit: (card) => {
@@ -99,6 +94,18 @@ const addImagePopup = new PopupWithForms({
     });
   },
 });
+
+const changeProfileAvatarPopup = new PopupWithForms({
+  modalSelector: editConstants.avatarModalSelector,
+  handleFormSubmit: (avatar) => {
+    api.changeProfileAvatar(avatar).then((avatarData) => {
+      userInfo.setAvatarImg(avatarData);
+      // userInfo.serUserInfo(avatarData);
+    });
+  },
+});
+
+changeProfileAvatarPopup.setEventListeners();
 
 const userInfoPopup = new PopupWithForms({
   modalSelector: editConstants.editModalSelector,
@@ -120,8 +127,14 @@ const addFormValidator = new FormValidator(
   addConstants.addCardsEl
 );
 
+const avatarFormValidator = new FormValidator(
+  validationSettings,
+  editConstants.profileAvatarForm
+);
+
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 addImagePopup.setEventListeners();
 imageModal.setEventListeners();
@@ -132,6 +145,11 @@ userInfoPopup.setEventListeners();
 addConstants.addCardButtonEl.addEventListener("click", () => {
   addFormValidator.resetValidation();
   addImagePopup.open();
+});
+
+editConstants.profileAvatarButtonEl.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  changeProfileAvatarPopup.open();
 });
 
 editConstants.profileEditButtonEl.addEventListener("click", () => {
