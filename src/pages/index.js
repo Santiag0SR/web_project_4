@@ -1,6 +1,5 @@
 import "./index.css";
 
-import initialCards from "../utils/InitialCards.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -18,6 +17,15 @@ import {
   addConstants,
 } from "../utils/constants.js";
 
+function loadingHandler(loading, modalSelector, text) {
+  const modal = document.querySelector(`.${modalSelector}`);
+  if (loading) {
+    modal.querySelector(".modal__save-button").textContent = text;
+  } else {
+    modal.querySelector(".modal__save-button").textContent = text;
+  }
+}
+
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-13",
   headers: {
@@ -26,25 +34,23 @@ const api = new Api({
   },
 });
 
-const deleteCard = new PopupDeleteCard({
-  modalSelector: addConstants.deleteCardsEl,
-  handleFormSubmit: (cardElement, cardId) => {
-    api.deleteCard(cardId).then(() => {
-      cardElement.remove();
-      deleteCard.close();
-    });
-  },
-});
+api
+  .getInitialProfile()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+  })
+  .catch((err) => {
+    console.log(`Error:${err}`);
+  });
 
-deleteCard.setEventListeners();
-
-api.getInitialProfile().then((res) => {
-  userInfo.setUserInfo(res);
-});
-
-api.getInitialCards().then((res) => {
-  cardList.renderItems(res.reverse());
-});
+api
+  .getInitialCards()
+  .then((res) => {
+    cardList.renderItems(res.reverse());
+  })
+  .catch((err) => {
+    console.log(`Error:${err}`);
+  });
 
 const createCard = (card) => {
   const cardInstance = new Card(
@@ -56,12 +62,11 @@ const createCard = (card) => {
       handleDeleteIcon: (evt) => {
         deleteCard.open(evt, card._id);
       },
-      handleLikeButton: () => {
-        api.likeCard(card._id).then(() => {
-          console.log("hello");
-        });
+      handleLikeButton: (buttonLiked) => {
+        return buttonLiked ? api.likeCard(card._id) : api.removeLike(card._id);
       },
     },
+
     cardConstants.cardSelector
   );
 
@@ -88,31 +93,78 @@ const userInfo = new UserInfo({
 const addImagePopup = new PopupWithForms({
   modalSelector: addConstants.addModalSelector,
   handleFormSubmit: (card) => {
-    api.fetchCard(card).then((cardData) => {
-      const newCard = createCard(cardData);
-      cardList.addItem(newCard.getView());
-    });
+    loadingHandler(true, addConstants.addModalSelector, "Creating...");
+    api
+      .fetchCard(card)
+      .then((cardData) => {
+        const newCard = createCard(cardData);
+        cardList.addItem(newCard.getView());
+        addImagePopup.close();
+      })
+      .catch((err) => {
+        console.log(`Error:${err}`);
+      })
+      .finally(() => {
+        loadingHandler(false, addConstants.addModalSelector, "Create");
+      });
   },
 });
 
 const changeProfileAvatarPopup = new PopupWithForms({
   modalSelector: editConstants.avatarModalSelector,
   handleFormSubmit: (avatar) => {
-    api.changeProfileAvatar(avatar).then((avatarData) => {
-      userInfo.setAvatarImg(avatarData);
-      // userInfo.serUserInfo(avatarData);
-    });
+    loadingHandler(true, editConstants.avatarModalSelector, "Changing...");
+
+    api
+      .changeProfileAvatar(avatar)
+      .then((avatarData) => {
+        userInfo.setAvatarImg(avatarData);
+        changeProfileAvatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Error:${err}`);
+      })
+      .finally(() => {
+        loadingHandler(false, editConstants.avatarModalSelector, "Change");
+      });
   },
 });
 
-changeProfileAvatarPopup.setEventListeners();
+const deleteCard = new PopupDeleteCard({
+  modalSelector: addConstants.deleteCardsEl,
+  handleFormSubmit: (cardElement, cardId) => {
+    loadingHandler(true, addConstants.deleteCardsEl, "Deleting...");
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardElement.remove();
+        deleteCard.close();
+      })
+      .catch((err) => {
+        console.log(`Error:${err}`);
+      })
+      .finally(() => {
+        loadingHandler(false, addConstants.deleteCardsEl, "Yes");
+      });
+  },
+});
 
 const userInfoPopup = new PopupWithForms({
   modalSelector: editConstants.editModalSelector,
   handleFormSubmit: (profile) => {
-    api.fetchProfileInfo(profile).then((profileData) => {
-      userInfo.setUserInfo(profileData);
-    });
+    loadingHandler(true, editConstants.editModalSelector, "Updating...");
+    api
+      .fetchProfileInfo(profile)
+      .then((profileData) => {
+        userInfo.setUserInfo(profileData);
+        userInfoPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Error:${err}`);
+      })
+      .finally(() => {
+        loadingHandler(false, editConstants.editModalSelector, "Update");
+      });
   },
 });
 
@@ -139,6 +191,8 @@ avatarFormValidator.enableValidation();
 addImagePopup.setEventListeners();
 imageModal.setEventListeners();
 userInfoPopup.setEventListeners();
+deleteCard.setEventListeners();
+changeProfileAvatarPopup.setEventListeners();
 
 /////POPUP BUTTONS/////
 

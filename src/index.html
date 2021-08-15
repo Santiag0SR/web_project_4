@@ -33,7 +33,7 @@
         <form class="modal__form modal__form_type_avatar" name="add-form">
           <h2 class="modal__text">Change profile picture</h2>
           <input
-            id="link-input"
+            id="link-input-avatar"
             class="modal__form-item modal__form-item_type_image-link"
             type="url"
             name="avatar"
@@ -41,7 +41,12 @@
             required
           />
           <span id="link-input-error" class="modal__error"></span>
-          <button class="button modal__save-button" type="submit">Save</button>
+          <button
+            class="button modal__save-button modal__save-button_type_avatar"
+            type="submit"
+          >
+            Change
+          </button>
         </form>
       </div>
     </div>
@@ -79,7 +84,7 @@
             class="button modal__save-button modal__save-button_type_edit"
             type="submit"
           >
-            Save
+            Update
           </button>
         </form>
       </div>
@@ -112,7 +117,10 @@
             required
           />
           <span id="link-input-error" class="modal__error"></span>
-          <button class="button modal__save-button" type="submit">
+          <button
+            class="button modal__save-button modal__save-button_type_add"
+            type="submit"
+          >
             Create
           </button>
         </form>
@@ -143,7 +151,7 @@
         <div class="profile__info">
           <div class="profile__avatar-container">
             <img
-              src="<%=require('./images/Jacques_Cousteau.png')%>"
+              src="<%=require('./images/Loading.png')%>"
               class="profile__avatar"
               alt="Jacques Cousteau"
             />
@@ -153,9 +161,9 @@
             ></button>
           </div>
           <div class="profile__text-container">
-            <h1 class="profile__name">Jaques Cousteau</h1>
+            <h1 class="profile__name">Loading...</h1>
             <button class="button profile__edit-button" type="button"></button>
-            <p class="profile__about">Explorer</p>
+            <p class="profile__about">Loading...</p>
           </div>
         </div>
         <button class="button profile__add-button" type="button"></button>
@@ -174,8 +182,10 @@
         <img class="card__img" />
         <div class="card__text-container">
           <h2 class="card__text"></h2>
-          <button class="button card__like-button" type="button"></button>
-          <!-- <p class="card__text card__likes-number">HELLOS</p> -->
+          <div class="card__likes-container">
+            <button class="button card__like-button" type="button"></button>
+            <p class="card__text card__text_likes-number">0</p>
+          </div>
         </div>
       </article>
     </template>

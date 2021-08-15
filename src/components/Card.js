@@ -3,8 +3,10 @@ class Card {
     { card, handlePreviewImg, handleDeleteIcon, handleLikeButton },
     cardSelector
   ) {
+    this._userId = "3aaa3ba0eaedbec067155932";
     this._name = card.name;
     this._link = card.link;
+    this._likedCard = card.likes;
     this._numberLikes = card.likes.length;
     this._handlePreviewImg = handlePreviewImg;
     this._handleDeleteIcon = handleDeleteIcon;
@@ -24,36 +26,51 @@ class Card {
     this._element = template;
   }
 
+  _checkLikes(card) {
+    this._element.querySelector(".card__text_likes-number").textContent =
+      card.likes.length;
+  }
+
+  _liked(e) {
+    this._handleLikeButton(
+      !e.target.classList.contains("card__like-button_active")
+    ).then((card) => {
+      e.target.classList.toggle("card__like-button_active");
+      this._checkLikes(card);
+    });
+  }
+
   _setEventListeners() {
     this._element
       .querySelector(".card__img")
       .addEventListener("click", () => this._handlePreviewImg());
 
     this._deleteButton = this._element.querySelector(".card__delete-button");
-    if (this._ownerId === "3aaa3ba0eaedbec067155932") {
-      this._deleteButton.addEventListener("click", (evt) =>
-        this._handleDeleteIcon(evt)
-      );
+    if (this._ownerId === this._userId) {
+      this._deleteButton.addEventListener("click", (evt) => {
+        this._handleDeleteIcon(evt);
+      });
     } else {
       this._deleteButton.remove();
     }
 
     this._likeButton = this._element.querySelector(".card__like-button");
-    this._likeButton.addEventListener("click", () => this._handleLikeButton());
+    this._likeButton.addEventListener("click", (e) => {
+      this._liked(e);
+    });
   }
 
-  // _handleLikeIcon() {
-  //   this._likeButton.classList.toggle("card__like-button_active");
-  // }
+  _getInitalLikes() {
+    const userLikeCard = this._likedCard.some(
+      (item) => item._id === this._userId
+    );
+    if (userLikeCard) {
+      this._likeButton.classList.add("card__like-button_active");
+    }
 
-  // _handleDeleteIcon() {
-  //   this._element.remove();
-  //   this._card = null;
-  // }
-
-  // _getInitalLikes() {
-  //   this._element.querySelector(".").textContent = this._numberLikes;
-  // }
+    this._element.querySelector(".card__text_likes-number").textContent =
+      this._numberLikes;
+  }
 
   getView() {
     this._getTemplate();
@@ -64,6 +81,7 @@ class Card {
     this._element.querySelector(".card__text").textContent = this._name;
     cardImg.src = this._link;
     cardImg.alt = this._name;
+    this._getInitalLikes(cardImg);
 
     return this._element;
   }

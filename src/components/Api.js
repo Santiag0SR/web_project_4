@@ -84,6 +84,19 @@ export default class Api {
     }).then((res) => {
       if (res.ok) {
         return res.json();
+      } else {
+        return Promise.reject(res.status);
+      }
+    });
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
       }
       return Promise.reject("Error");
     });
