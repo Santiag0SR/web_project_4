@@ -34,17 +34,18 @@ const api = new Api({
   },
 });
 
-const initialProfile = api.getInitialProfile().then((res) => {
-  userInfo.setUserInfo(res);
-});
+const initialProfile = api.getInitialProfile();
 
-const initialCards = api.getInitialCards().then((res) => {
-  cardList.renderItems(res.reverse());
-});
+const initialCards = api.getInitialCards();
 
-Promise.all([initialProfile, initialCards]).catch((err) => {
-  console.log(`Error:${err}`);
-});
+Promise.all([initialProfile, initialCards])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    cardList.renderItems(cards.reverse());
+  })
+  .catch((err) => {
+    console.log(`Error:${err}`);
+  });
 
 const createCard = (card) => {
   const cardInstance = new Card(
