@@ -34,23 +34,17 @@ const api = new Api({
   },
 });
 
-api
-  .getInitialProfile()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-  })
-  .catch((err) => {
-    console.log(`Error:${err}`);
-  });
+const initialProfile = api.getInitialProfile().then((res) => {
+  userInfo.setUserInfo(res);
+});
 
-api
-  .getInitialCards()
-  .then((res) => {
-    cardList.renderItems(res.reverse());
-  })
-  .catch((err) => {
-    console.log(`Error:${err}`);
-  });
+const initialCards = api.getInitialCards().then((res) => {
+  cardList.renderItems(res.reverse());
+});
+
+Promise.all([initialProfile, initialCards]).catch((err) => {
+  console.log(`Error:${err}`);
+});
 
 const createCard = (card) => {
   const cardInstance = new Card(
@@ -65,8 +59,8 @@ const createCard = (card) => {
       handleLikeButton: (buttonLiked) => {
         return buttonLiked ? api.likeCard(card._id) : api.removeLike(card._id);
       },
+      userId: userInfo.getId(),
     },
-
     cardConstants.cardSelector
   );
 
@@ -85,9 +79,9 @@ const cardList = new Section(
 );
 
 const userInfo = new UserInfo({
-  userNameSelector: editConstants.profileNameEl,
-  userAboutSelector: editConstants.profileAboutEl,
-  userAvatarSelector: editConstants.profileAvatarEl,
+  userName: editConstants.profileNameEl,
+  userAbout: editConstants.profileAboutEl,
+  userAvatar: editConstants.profileAvatarEl,
 });
 
 const addImagePopup = new PopupWithForms({

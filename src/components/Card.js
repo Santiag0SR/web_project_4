@@ -1,9 +1,9 @@
 class Card {
   constructor(
-    { card, handlePreviewImg, handleDeleteIcon, handleLikeButton },
+    { card, handlePreviewImg, handleDeleteIcon, handleLikeButton, userId },
     cardSelector
   ) {
-    this._userId = "3aaa3ba0eaedbec067155932";
+    this._userId = userId;
     this._name = card.name;
     this._link = card.link;
     this._likedCard = card.likes;
@@ -34,10 +34,14 @@ class Card {
   _liked(e) {
     this._handleLikeButton(
       !e.target.classList.contains("card__like-button_active")
-    ).then((card) => {
-      e.target.classList.toggle("card__like-button_active");
-      this._checkLikes(card);
-    });
+    )
+      .then((card) => {
+        e.target.classList.toggle("card__like-button_active");
+        this._checkLikes(card);
+      })
+      .catch((err) => {
+        console.log(`Error:${err}`);
+      });
   }
 
   _setEventListeners() {
